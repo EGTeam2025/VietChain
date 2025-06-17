@@ -1,0 +1,98 @@
+---
+title: using-remix-ide
+description: using-remix-ide
+imageTitle: using-remix-ide
+path: /docs/getting-started/developer-guide/deploy/using-remix-ide
+---
+
+import { Callout } from "nextra/components";
+
+# Sử dụng Remix IDE
+
+Thiết lập và khởi chạy Hợp đồng thông minh mã thông báo TBRC-20 trên VietChain bằng Remix IDE .
+
+### Remix IDE là gì ?
+
+Remix IDE là một ứng dụng web và máy tính để bàn mã nguồn mở hỗ trợ phát triển hợp đồng thông minh, được viết bằng ngôn ngữ Solidity cho chuỗi khối Ethereum. Nó cung cấp một loạt các công cụ giúp các nhà phát triển viết, kiểm tra, gỡ lỗi và triển khai hợp đồng thông minh một cách dễ dàng. Một số tính năng đáng chú ý của Remix IDE bao gồm.
+
+### Điều kiện tiên quyết
+
+1. Thêm VietChain vào MetaMask của bạn, để thêm hãy tham khảo hướng dẫn [Add VietChain to Metamask](/docs/getting-started/add-Vietchain)
+
+2. Vòi VietChain coin
+
+### Tạo và triển khai VRC20 Token trên Remix IDE
+
+    - Đi đến [https://remix.ethereum.org/](https://remix.ethereum.org/)
+
+    Bạn sẽ thấy màn hình sau.
+
+![deploy-using-remix-1](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-1.png)
+
+    - Nhấp vào biểu tượng được đề cập bên dưới để tạo một tệp mới có tên là ```PrimeViet.sol```.
+
+![deploy-using-remix-2](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-2.png)
+
+    - Một tập tin trống sẽ xuất hiện như hình dưới đây.
+
+![deploy-using-remix-3](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-3.png)
+
+    - Sao chép mã vào ```PrimeViet.sol```.
+
+    ```solidity
+        // SPDX-License-Identifier: MIT
+        pragma solidity >=0.5.16 <0.9.0;
+
+        import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
+        import "@openzeppelin/contracts/access/Ownable.sol";
+
+        contract PrimeViet is ERC20, Ownable {
+            constructor() ERC20("PrimeViet", "PRIMEViet") Ownable(msg.sender) {
+                _mint(msg.sender, 1000000000 * 10 ** decimals());
+            }
+
+            function mint(address to, uint256 amount) public onlyOwner {
+                _mint(to, amount);
+            }
+        }
+    ```
+    - Bây giờ, nhấp vào biểu tượng "Solidity compiler" để chuyển đến tab biên dịch. Sau đó, chuyển đổi menu thả xuống "**Advanced Configurations**" và chuyển đổi menu thả xuống "**EVM VERSION**" và chọn "**paris**" thay vì "**default**".
+
+    - Nhấn nút "Compile" vào hợp đồng của bạn, đảm bảo bạn chọn hộp kiểm được đánh dấu trong vòng tròn màu xanh.
+
+![deploy-using-remix-4](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-4.png)
+
+    - Để triển khai hợp đồng của bạn, hãy nhấp vào nút được chỉ định bên dưới để chuyển đến tab triển khai và chạy giao dịch
+
+![deploy-using-remix-5](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-5.png)
+
+    - Bây giờ, hãy chọn danh sách thả xuống "Remix VM....", sau đó chọn "Injected Provider" được đánh dấu màu đỏ.
+
+![deploy-using-remix-6](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-6.png)
+
+    - Sau khi thực hiện lựa chọn đó, MetaMask sẽ nhắc bạn mở khóa ví. Nếu bạn đã đăng nhập vào MetaMask, bạn sẽ thấy màn hình hiển thị tương tự như bên dưới.
+
+![deploy-using-remix-7](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-7.png)
+
+<Callout type="info" emoji="ℹ️">
+  Đảm bảo rằng bạn đã kết nối với VietChain, có ID chuỗi là 4080
+</Callout>
+
+    - Để hoàn tất việc triển khai Hợp đồng thông minh TBRC20 của bạn trên VietChain, hãy nhấn nút "Triển khai" được tô sáng màu cam như hình dưới đây.
+
+![deploy-using-remix-8](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-8.png)
+
+<Callout type="info" emoji="ℹ️">
+  Đảm bảo bạn có đủ Viet Token để trang trải phí gas cho giao dịch.
+</Callout>
+
+<Callout type="info" emoji="ℹ️">
+  Nếu bạn chưa thêm VietChain vào MetaMask của mình, hãy tham khảo hướng dẫn
+  [Add VietChain to Metamask](/docs/getting-started/add-Vietchain)
+</Callout>
+
+Sau khi nhấp vào nút "Deploy", MetaMask sẽ bật lên nhắc bạn chấp thuận giao dịch. Sau khi xác nhận, hợp đồng của bạn sẽ được triển khai trong vòng vài giây và bạn có thể xem hợp đồng đã triển khai của mình tại đây.
+
+![deploy-using-remix-9](/assets/images/docs/getting-started/developer-guide/deploy/using-remix-ide/deploy-remix-9.png)
+
+    **Well done!** Bạn đã tạo và triển khai thành công token TBRC20 trên Viet Chain.

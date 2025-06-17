@@ -1,0 +1,64 @@
+---
+title: Cơ chế Đồng thuận
+description: Cơ chế Đồng thuận
+imageTitle: Cơ chế Đồng thuận
+path: /docs/getting-started/core-concept/consensus
+---
+
+# Cơ chế Đồng thuận
+
+VietChain áp dụng một cơ chế đồng thuận đột phá có tên gọi **Proof of Tracing (PoT)**, đánh dấu một bước tiến quan trọng trong các thuật toán đồng thuận blockchain. PoT kết hợp những ưu điểm của các cơ chế hiện có, đồng thời giới thiệu các phương pháp mới trong việc lựa chọn validator và bảo mật mạng lưới.
+
+![active-set-selection](/assets/images/docs/getting-started/core-concept/tracing.png)
+### 1. Tổng quan về Proof of Tracing (PoT)
+
+Proof of Tracing là một cơ chế đồng thuận động, lựa chọn các nhà sản xuất khối dựa trên hiệu suất lịch sử và năng lực truy vết giao dịch, thay vì chỉ dựa vào quyền lực tài chính hay thẩm quyền tĩnh. Phương pháp đánh giá dựa trên thành tích này đảm bảo chỉ những validator có kỹ năng và độ tin cậy cao mới được tham gia sản xuất khối.
+
+### 2. Các thành phần chính của PoT
+
+**Hệ thống đánh giá danh tiếng:**  
+PoT sử dụng một hệ thống chấm điểm danh tiếng tinh vi, đánh giá validators dựa trên bốn tiêu chí chính:
+
+- **Tỷ lệ xác thực khối (30%):** Tỷ lệ các khối hợp lệ được tạo thành công.
+- **Tỷ lệ truy vết thành công (40%):** Khả năng truy vết và xác minh các giao dịch phức tạp một cách chính xác.
+- **Điểm thời gian hoạt động (20%):** Mức độ tham gia mạng ổn định và duy trì kết nối liên tục.
+- **Điểm độ trễ (10%):** Thời gian phản hồi và hiệu suất kết nối mạng.
+
+**Thử thách truy vết:**  
+Hệ thống sẽ định kỳ tạo ra các thử thách kiểm tra khả năng truy vết các luồng giao dịch và xác minh các hoạt động phức tạp của validator. Mỗi thử thách có độ sâu (1-10) và mức độ khó (1-10) khác nhau, đảm bảo đánh giá toàn diện năng lực kỹ thuật.
+
+**Lựa chọn validator động:**  
+Các validator hoạt động được lựa chọn dựa trên điểm danh tiếng, với bộ validator được cập nhật tự động sau mỗi 100 block nhằm duy trì hiệu suất tối ưu cho mạng.
+
+### 3. Ưu điểm của PoT
+
+**Lựa chọn dựa trên năng lực:**  
+Khác với các cơ chế truyền thống dựa vào tài sản (PoS) hoặc sự ủy quyền trước (PoA), PoT lựa chọn validator dựa trên thành tích thực tế và trình độ kỹ thuật.
+
+**Bảo mật nâng cao:**  
+Yêu cầu kỹ năng kỹ thuật và giám sát hiệu suất liên tục giúp mạng lưới chống lại các cuộc tấn công từ những đối tượng có kỹ năng thấp.
+
+**Tiết kiệm năng lượng:**  
+PoT duy trì mức tiêu thụ năng lượng thấp nhưng vẫn đảm bảo bảo mật và hiệu suất cao, thân thiện với môi trường.
+
+**Công bằng và phi tập trung:**  
+Cơ chế ngăn chặn việc tập trung quyền lực vào tay những người có tài sản lớn, thúc đẩy quá trình lựa chọn validator dân chủ hơn.
+
+### 4. Tích hợp Cấu hình Bảo mật (Security Config)
+
+Cơ chế đồng thuận của VietChain được tăng cường bởi hệ thống Security Config tích hợp sẵn, bao gồm:
+
+- **Quản lý whitelist:** Kiểm soát ai được phép triển khai smart contract.
+- **Thực thi blacklist:** Chặn thời gian thực các địa chỉ độc hại.
+- **Đóng băng tài khoản:** Khả năng phản ứng khẩn cấp khi phát hiện hành vi đáng ngờ.
+- **Truy xuất hợp đồng:** Theo dõi toàn bộ quá trình triển khai và mối liên hệ của các hợp đồng thông minh.
+
+### 5. Đặc điểm hiệu suất
+
+- **Thông lượng giao dịch:** Hơn 15,000 TPS
+- **Thời gian hoàn tất khối:** 1-2 giây
+- **Tiết kiệm năng lượng:** Tương đương với Proof of Stake
+- **Yêu cầu đối với validator:** Dựa trên năng lực kỹ thuật thay vì tài chính
+
+Cơ chế đồng thuận đột phá này giúp VietChain trở thành nền tảng blockchain thế hệ tiếp theo, cân bằng giữa hiệu suất, bảo mật và tính phi tập trung, đồng thời đáp ứng khả năng tuân thủ cho việc ứng dụng trong doanh nghiệp.
+

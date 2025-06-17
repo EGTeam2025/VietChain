@@ -1,0 +1,45 @@
+---
+title: Tệp Genesis
+description: Tệp Genesis.
+imageTitle: Tệp Genesis
+path: /docs/getting-started/core-concept/genesis
+---
+
+# Tệp Genesis
+
+Tệp genesis là một tài liệu định dạng JSON, thiết lập trạng thái ban đầu của blockchain. Nó đóng vai trò là khối nền tảng (block gốc), được đặt tại độ cao (height) 0 trong cấu trúc blockchain.  
+Khối tiếp theo, tại độ cao 1, sẽ coi tệp genesis là khối tiền nhiệm của nó.
+
+Tệp genesis bao gồm nhiều thông tin quan trọng như: phân phối token ban đầu, dấu thời gian khởi tạo, các cấu hình mặc định và nhiều thông tin khác. Dưới đây là phần phân tích chi tiết:
+
+## Các thành phần chính
+
+1. **chainid:**
+   - 1337 — Để đảm bảo khả năng tương thích với các dịch vụ bên thứ ba đã quen thuộc với VietChain, nên tránh sử dụng Network ID đã từng được dùng trước đó trong hệ sinh thái VietChain.
+
+2. **period:**
+   - Đại diện cho khoảng thời gian tối thiểu giữa các dấu thời gian của hai khối liên tiếp. Giá trị khuyến nghị là 5 giây.
+
+3. **nonce:**
+   - Trong VietChain, nonce đại diện cho bằng chứng công việc bảo mật (proof-of-work) trong khai thác, đảm bảo nỗ lực tính toán được thực hiện để xác định giá trị token này. Trong VietChain, giá trị nonce luôn được đặt là 0x0.
+
+4. **extraData:**
+   - **EXTRA_VANITY:** Lưu giữ một số byte tiền tố cố định trong extra-data cho phần vanity của signer (địa chỉ ký). Thông thường đề xuất là 32 byte.
+   - **Signer Info:** Chỉ định địa chỉ validator.
+   - **EXTRA_SEAL:** Một số byte cố định, đây là chữ ký của signer dùng để khóa (seal) phần header.
+
+5. **gasLimit:**
+   - Đại diện cho giới hạn Gas tổng thể cho mỗi block. GasCeil được đặt ở mức 8000000.
+
+6. **difficulty:**
+   - Thể hiện mức độ khó khăn khi tìm kiếm nonce cho block này. Trong VietChain, difficulty được đặt là 0x1.
+
+7. **coinbase:**
+   - Một địa chỉ được hệ thống quản lý để thu thập phần thưởng khối.
+
+8. **number:**
+   - Chỉ số thứ tự của khối trong chuỗi, trong đó genesis luôn ở block 0.
+
+---
+
+Bằng việc hiểu rõ cấu trúc và mục đích của từng thành phần trong tệp genesis, các thành viên tham gia có thể nắm được những nguyên lý nền tảng điều chỉnh hoạt động của VietChain.

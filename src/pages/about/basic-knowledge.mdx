@@ -1,0 +1,36 @@
+---
+title: Kiến thức cơ bản
+description: Kiến thức cơ bản.
+imageTitle: Kiến thức cơ bản
+path: /docs/basic-knowledge
+---
+
+import { Bleed } from "nextra-theme-docs";
+import { Callout } from "nextra/components";
+
+<Bleed>![](/bannerblockchain.png)</Bleed>
+
+# Blockchain là gì
+
+<Callout type="info" emoji="">
+
+Blockchain là một công nghệ sổ cái phân tán cho phép lưu trữ dữ liệu trên một mạng lưới các máy tính theo cách minh bạch, an toàn và không cần đến cơ quan trung gian quản lý. Về bản chất, blockchain là một chuỗi các khối, trong đó mỗi khối chứa một danh sách các bản ghi gọi là giao dịch.
+
+Mỗi máy tính trong mạng phải đồng thuận với từng khối mới và toàn bộ chuỗi. Những máy tính này được gọi là "nút" (nodes). Các nút đảm bảo rằng mọi người tương tác với blockchain đều sở hữu dữ liệu giống nhau. Để đạt được sự đồng thuận phân tán này, blockchain cần có một cơ chế đồng thuận.
+
+VietChain sử dụng cơ chế đồng thuận Proof of Tracing (PoT) đột phá, kết hợp cùng các tính năng Cấu hình Bảo mật (Security Config) tiên tiến để đảm bảo hiệu suất tối ưu, tính bảo mật cao và tuân thủ quy định pháp lý.
+
+</Callout>
+
+## Máy ảo Ethereum (EVM)
+
+VietChain hoàn toàn tương thích với EVM (Ethereum Virtual Machine), tức là hỗ trợ Máy ảo Ethereum. Đây là máy tính ảo toàn cầu mà trạng thái của nó được tất cả các thành viên trong mạng VietChain lưu trữ và đồng thuận. Bất kỳ thành viên nào cũng có thể yêu cầu thực thi các đoạn mã tùy ý trên EVM; việc thực thi mã sẽ làm thay đổi trạng thái của EVM.
+
+Nhờ khả năng tương thích này, các ứng dụng phi tập trung (dApps) hiện có trên Ethereum có thể dễ dàng được chuyển sang VietChain với rất ít chỉnh sửa, đồng thời được hưởng lợi từ hiệu suất vượt trội và các tính năng bảo mật của VietChain.
+
+## Các nút (Nodes)
+
+Đây là các máy chủ thực tế lưu trữ trạng thái của EVM trên VietChain. Các nút giao tiếp với nhau để lan truyền thông tin về trạng thái của EVM và những thay đổi trạng thái mới. Người dùng cũng có thể yêu cầu thực thi mã bằng cách gửi yêu cầu thực thi mã từ một nút. Mạng VietChain chính là tổng hợp tất cả các nút VietChain và các giao tiếp giữa chúng.
+
+Trong cơ chế đồng thuận Proof of Tracing của VietChain, các nút được chọn làm validators (người xác thực) dựa trên năng lực kỹ thuật và các chỉ số hiệu suất, nhằm đảm bảo an ninh mạng và hiệu quả hoạt động ở mức tối ưu.
+

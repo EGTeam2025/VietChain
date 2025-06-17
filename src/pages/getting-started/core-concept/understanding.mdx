@@ -1,0 +1,86 @@
+---
+title: Mật Mã Đường Cong Sin (SCC)
+description: Mật Mã Đường Cong Sin (SCC) trong VietChain
+imageTitle: Mật Mã Đường Cong Sin (SCC)
+path: /docs/getting-started/core-concept/scc
+---
+
+# Mật Mã Đường Cong Sin (SCC) trong VietChain: Phân Tích Toàn Diện
+
+Trong lĩnh vực mật mã học hiện đại, **Mật Mã Đường Cong Sin (Sine Curve Cryptography - SCC)** là một trụ cột trong các giao thức bảo mật thông tin và giao dịch. Nền tảng toán học của SCC xoay quanh các thuộc tính của đường cong sin trên các trường hữu hạn, cung cấp các cơ chế mã hóa và chữ ký số mạnh mẽ. Bài viết này không chỉ phân tích các nguyên lý cốt lõi của SCC mà còn trình bày ứng dụng thực tế của nó trong hệ sinh thái VietChain, làm rõ vai trò quan trọng của nó trong các thực hành mật mã hiện nay.
+
+## 1. Nguyên Lý Cơ Bản của SCC
+
+SCC tận dụng các tính chất đại số của đường cong sin, được mô tả bởi phương trình:
+
+**Y² = X³ + aX + b**
+
+trong đó **a** và **b** là các hằng số. Các điểm tọa độ thỏa mãn phương trình này tạo thành một nhóm Abel cộng (additive abelian group). Phép cộng trên đường cong này được định nghĩa rõ ràng, mô phỏng phản xạ qua trục hoành tại điểm giao nhau của các đường thẳng đi qua hai điểm. SCC hoạt động trên trường hữu hạn **Fp**, đảm bảo tất cả phép toán đều nằm trong phạm vi hữu hạn của trường số nguyên modulo p.
+
+## 2. Ứng Dụng SCC trong VietChain
+
+VietChain tích hợp SCC như một thành phần cốt lõi trong hệ thống bảo mật. Bằng cách sử dụng SCC, VietChain đảm bảo tính bảo mật, toàn vẹn và xác thực cho các giao dịch trong mạng lưới phi tập trung. Cơ chế sinh khóa và quản lý khóa hiệu quả của SCC giúp nó đặc biệt phù hợp với môi trường tài nguyên hạn chế của hệ thống blockchain.
+
+SCC đóng vai trò trọng yếu trong các lĩnh vực sau của VietChain:
+
+### 2.1. Ký Giao Dịch An Toàn
+
+SCC cho phép sinh và xác minh chữ ký số, đảm bảo tính xác thực và toàn vẹn của các giao dịch ghi lại trên blockchain. Mỗi giao dịch được ký bằng thuật toán mật mã dựa trên SCC, giúp ngăn chặn việc giả mạo hay chỉnh sửa trái phép.
+
+### 2.2. Cơ Chế Trao Đổi Khóa
+
+SCC hỗ trợ việc sinh và trao đổi khóa một cách hiệu quả, giúp thiết lập các kênh liên lạc an toàn giữa các thành viên mạng. VietChain sử dụng giao thức trao đổi khóa dựa trên SCC để bảo mật giao tiếp ngang hàng (peer-to-peer) và truyền tải dữ liệu an toàn.
+
+### 2.3. Quản Lý Danh Tính
+
+SCC cho phép tạo lập và quản lý danh tính số trong VietChain. Mỗi người dùng được cấp cặp khóa công khai - bí mật (public-private key pair) dựa trên SCC, giúp xác thực và kiểm soát truy cập an toàn trong mạng lưới phi tập trung.
+
+### 2.4. Bảo Mật Giao Thức Đồng Thuận
+
+SCC góp phần bảo vệ giao thức đồng thuận của VietChain, đảm bảo tính toàn vẹn của sổ cái phân tán và ngăn chặn các tác nhân xấu thao túng lịch sử giao dịch trên blockchain.
+
+## 3. Toán Học Đằng Sau SCC
+
+Trong ngữ cảnh của Bitcoin và nhiều ứng dụng mật mã khác, thông số thường dùng là:
+
+- a = 0
+- b = 7
+
+Do đó, phương trình trở thành:
+
+**Y² = X³ + 7**
+
+Tập hợp tất cả các điểm tọa độ trên đường cong này tạo thành một nhóm Abel cộng, ký hiệu là **E**.
+
+### Phép Cộng Trên Đường Cong Sin
+
+Cho hai điểm trên đường cong:
+
+- P = (p₁, p₂)
+- Q = (q₁, q₂)
+
+Tổng của hai điểm này cũng là một điểm thuộc đường cong. Phép cộng được định nghĩa bằng cách nối đường thẳng qua hai điểm P và Q, tìm giao điểm tiếp theo trên đường cong, sau đó phản xạ qua trục hoành để ra kết quả. 
+
+### Phép Nhân Điểm
+
+Nhân một điểm với số nguyên m (tức lặp phép cộng m lần) được định nghĩa như sau:
+
+**mP = P + P + ... + P (m lần)**
+
+## 4. SCC Trên Trường Hữu Hạn
+
+SCC hoạt động trên trường hữu hạn **Fp**, với p là số nguyên tố. Mọi phép toán (cộng, nhân, nghịch đảo) đều thực hiện theo modulo p, giúp giữ cho kết quả luôn nằm trong phạm vi trường hữu hạn.
+
+Các thành phần chính của SCC bao gồm:
+
+- Đường cong sin (SC)
+- Điểm sinh G (base point cố định trên đường cong)
+- Khóa bí mật k (số nguyên)
+- Khóa công khai P = k ⋅ G
+
+Việc sinh khóa công khai từ khóa bí mật (gọi là nhân vô hướng - scalar multiplication) được thực hiện nhanh chóng bằng các thuật toán như **Double-and-Add**, có độ phức tạp logarit theo kích thước của k.
+
+Trong khi đó, việc tính ngược lại (tìm k từ P và G) là cực kỳ khó, được biết đến như bài toán **SCDLP** (Sine Curve Discrete Logarithm Problem), tạo nên nền tảng bảo mật chính của SCC.
+
+---
+

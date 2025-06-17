@@ -1,0 +1,239 @@
+---
+title: PoT
+description: PoT
+imageTitle: PoT
+path: /docs/getting-started/core-concept/pot
+---
+
+# Proof of Tracing (PoT):
+
+### Cơ chế đồng thuận thông minh dựa trên hiệu suất và khả năng tracing thực tế
+
+![pot-intro](/assets/images/docs/getting-started/core-concept/POT.png)
+
+1. **Validator (Trình xác thực):**  
+   Các node tham gia mạng với khả năng xác thực giao dịch, tạo block và thực hiện tracing.
+
+2. **Reputation System (Hệ thống uy tín):**  
+   Hệ thống đánh giá tự động dựa trên 4 tiêu chí: tỷ lệ block thành công (30%), khả năng tracing (40%), thời gian online (20%), tốc độ phản hồi (10%).
+
+3. **Tracing Challenge (Thử thách tracing):**  
+   Bài kiểm tra định kỳ yêu cầu validator theo dõi và phân tích chi tiết các giao dịch phức tạp trong thời gian quy định.
+
+4. **Active Set (Tập validator hoạt động):**  
+   Nhóm tối đa 100 validator có điểm uy tín cao nhất (≥50 điểm) được chọn để tham gia tạo block.
+
+5. **Performance Metrics (Chỉ số hiệu suất):**  
+   Các thông số được thu thập liên tục: số block hợp lệ, thời gian trace hoàn thành, tỷ lệ uptime, độ trễ phản hồi.
+
+6. **Dynamic Selection (Lựa chọn động):**  
+   Hệ thống tự động cập nhật Active Set mỗi 100 block, loại bỏ validator kém và thêm validator giỏi.
+
+7. **Snapshot Management (Quản lý snapshot):**  
+   Lưu trữ trạng thái mạng mỗi 1024 block để đảm bảo khôi phục nhanh và theo dõi lịch sử hiệu suất.
+
+8. **Consensus Network (Mạng đồng thuận):**  
+   Toàn bộ validator network hoạt động theo nguyên tắc merit-based, tự điều chỉnh để đảm bảo hiệu suất tối ưu.
+
+Cơ chế PoT yêu cầu validator duy trì điểm uy tín tối thiểu 50/100 để tham gia Active Set. Validator có điểm thấp sẽ tự động bị loại khỏi quá trình tạo block. Hệ thống khuyến khích cạnh tranh lành mạnh, validator phải liên tục cải thiện hiệu suất để duy trì vị trí trong Active Set.
+
+## Tóm tắt
+
+Bài viết giới thiệu kiến trúc blockchain tiên tiến mang tên Proof of Tracing (PoT), cơ chế đồng thuận revolutionary cho phép đánh giá và lựa chọn validator dựa trên khả năng thực tế thay vì quyền hạn tĩnh. Khác với Proof of Authority (PoA) truyền thống với danh sách validator cố định, PoT tạo ra một hệ thống **merit-based** động, nơi validator được chọn dựa trên hiệu suất lịch sử và khả năng tracing giao dịch. 
+
+PoT cải thiện đáng kể cả tính bảo mật lẫn hiệu suất của mạng blockchain, đảm bảo chỉ những validator có năng lực cao nhất mới được tham gia tạo block. Hệ thống đã được thiết kế để đạt thông lượng cao và độ trễ thấp, phù hợp cho các ứng dụng enterprise và real-time.
+
+## Giới thiệu về PoT
+
+Hãy tưởng tượng một hệ thống ngân hàng nơi nhân viên được chọn làm cashier không dựa vào mối quan hệ hay thâm niên, mà dựa vào khả năng xử lý giao dịch chính xác và nhanh chóng. Đó chính là nguyên lý cốt lõi của PoT.
+
+Trong hệ thống PoT, mỗi validator được đánh giá liên tục qua các chỉ số khách quan. Validator nào làm việc tốt sẽ được ưu tiên tham gia tạo block, validator kém sẽ tự động bị loại. Điều này tạo ra một mạng lưới blockchain **tự tối ưu hóa**, luôn duy trì hiệu suất cao nhất.
+
+Bài viết này sẽ đi sâu vào cơ chế hoạt động, kiến trúc kỹ thuật và ưu điểm của PoT trong việc tạo ra một blockchain vừa hiệu quả, vừa công bằng và bảo mật.
+
+## Hàm băm mật mã (Cryptographic Hash Function)
+
+Là hàm toán học nhận vào dữ liệu có kích thước bất kỳ và trả về chuỗi đầu ra cố định. Trong PoT, hash function được sử dụng để:
+
+- Tạo hash cho mỗi block trong blockchain
+- Ký và xác thực tracing proof
+- Tạo snapshot checkpoints cho validator state
+- Đảm bảo tính toàn vẹn dữ liệu reputation
+
+Một số đặc tính quan trọng:
+- Đầu ra có kích thước cố định (256-bit với SHA256)
+- Thay đổi nhỏ ở đầu vào tạo ra sự khác biệt lớn ở đầu ra
+- Gần như không thể tìm được hàm nghịch đảo
+- Các hàm được sử dụng: SHA256, Keccak256
+
+## Chữ ký số và xác thực (Digital Signature & Authentication)
+
+![signature-verification](/assets/images/docs/getting-started/core-concept/potblockchain.png)
+
+PoT sử dụng thuật toán ECDSA (Elliptic Curve Digital Signature Algorithm) để đảm bảo tính xác thực:
+
+**Quá trình ký:**
+1. Tính hash của message (block header hoặc tracing proof)
+2. Sinh số ngẫu nhiên bảo mật k
+3. Tính điểm R = k × G trên elliptic curve
+4. Tính signature s = k⁻¹ × (hash + r × private_key) mod n
+5. Chữ ký là cặp (r, s)
+
+**Quá trình xác thực:**
+1. Tính hash của message
+2. Tính s⁻¹ mod n
+3. Tính điểm R' = (hash × s⁻¹) × G + (r × s⁻¹) × public_key
+4. So sánh r với hoành độ của R' để xác thực
+
+## Cấu trúc Block và Blockchain trong PoT
+
+Mỗi block trong PoT gồm các thành phần cải tiến:
+
+1. **Index:** Số thứ tự block
+2. **Timestamp:** Thời gian tạo block (Unix timestamp)
+3. **Transaction Data:** Dữ liệu giao dịch và tracing challenges
+4. **Previous Hash:** Hash của block trước đó
+5. **Validator Info:** Thông tin validator tạo block và reputation score
+6. **Nonce:** Số dùng để điều chỉnh difficulty
+7. **Block Hash:** Hash của toàn bộ block
+
+PoT sử dụng difficulty động dựa trên turn-based rotation:
+- **In-turn validator:** difficulty = 2 (ưu tiên cao)
+- **Out-of-turn validator:** difficulty = 1 (ưu tiên thấp)
+
+![pot-block-structure](/assets/images/docs/getting-started/core-concept/chuky.png)
+
+## Nguyên lý cốt lõi của PoT
+
+PoT hoạt động dựa trên 3 nguyên lý chính:
+
+### 1. Merit-based Selection
+Thay vì ủy quyền tĩnh, PoT chọn validator dựa trên khả năng thực tế được đo lường qua các metrics khách quan.
+
+### 2. Continuous Evaluation  
+Hệ thống đánh giá validator liên tục, không phải chỉ một lần khi gia nhập mạng.
+
+### 3. Self-regulating Network
+Mạng tự động điều chỉnh để luôn có những validator tốt nhất đang hoạt động.
+
+## Hệ thống Reputation Scoring
+
+![reputation-system](/assets/images/docs/getting-started/core-concept/ActiveSet.png)
+
+Điểm uy tín được tính theo công thức có trọng số:
+
+**Reputation Score = (Block Success Rate × 30%) + (Trace Success Rate × 40%) + (Uptime Score × 20%) + (Latency Score × 10%)**
+
+### Chi tiết các thành phần:
+
+- **Block Success Rate:** Tỷ lệ block hợp lệ / tổng block đã tạo
+- **Trace Success Rate:** Tỷ lệ tracing challenge hoàn thành thành công  
+- **Uptime Score:** Tỷ lệ thời gian validator online và sẵn sàng
+- **Latency Score:** Điểm số dựa trên thời gian phản hồi trung bình
+
+## Tracing Challenge System
+
+Tracing challenges là bài kiểm tra định kỳ nhằm đánh giá khả năng kỹ thuật thực tế của validator:
+
+### Quy trình thực hiện:
+1. **Tạo Challenge:** Hệ thống tạo ra một giao dịch phức tạp cần trace
+2. **Phân phối:** Challenge được gửi đến các validator trong Active Set  
+3. **Thực hiện:** Validator phải trace qua các bước giao dịch chi tiết
+4. **Nộp Proof:** Validator gửi kết quả trace kèm chữ ký
+5. **Đánh giá:** Hệ thống chấm điểm dựa trên độ chính xác và thời gian
+
+### Cấu trúc Challenge:
+- **Transaction Hash:** Giao dịch cần trace
+- **Depth Level:** Độ sâu trace yêu cầu (1-10)
+- **Difficulty:** Mức độ phức tạp (1-10)
+- **Time Limit:** Thời gian tối đa để hoàn thành
+
+## Active Set Management
+
+![active-set-selection](/assets/images/docs/getting-started/core-concept/ReputationScoring.png)
+
+### Quy trình chọn Active Set:
+
+1. **Lọc ứng viên:** Chỉ validator có điểm ≥ 50 và đang active
+2. **Sắp xếp theo điểm:** Xếp hạng từ cao xuống thấp
+3. **Chọn top validator:** Lấy tối đa 100 validator hàng đầu
+4. **Cập nhật định kỳ:** Tái tính toán mỗi 100 block
+
+### Lợi ích của Active Set:
+- Đảm bảo chỉ validator giỏi nhất tham gia tạo block
+- Tạo động lực cạnh tranh lành mạnh
+- Tự động loại bỏ validator kém hiệu suất
+- Duy trì hiệu suất mạng ổn định
+
+## Block Production với Turn-based Rotation
+
+Validator trong Active Set tạo block theo thứ tự luân phiên:
+
+### In-turn Signing:
+- Validator đúng lượt được ưu tiên cao
+- Difficulty = 2, dễ được network chấp nhận
+- Đảm bảo thứ tự công bằng
+
+### Out-of-turn Signing:
+- Validator khác có thể tạo block khi cần
+- Difficulty = 1, khó được chấp nhận hơn
+- Đảm bảo network không bị stuck
+
+## Tiết kiệm năng lượng và mở rộng quy mô
+
+PoT mang lại hiệu quả năng lượng vượt trội:
+
+### So với Proof of Work:
+- Không cần giải bài toán hash phức tạp
+- Tiết kiệm 99%+ năng lượng tiêu thụ
+- Không cần phần cứng chuyên dụng
+
+### So với Proof of Stake:
+- Không cần stake token lớn
+- Dựa vào merit thực tế thay vì tài sản
+- Công bằng hơn cho validator mới
+
+### Khả năng mở rộng:
+- Thông lượng cao nhờ validator được tối ưu
+- Độ trễ thấp do chọn validator có latency tốt
+- Phù hợp cho ứng dụng real-time
+
+## Giảm thiểu rủi ro tập trung hóa
+
+PoT giải quyết vấn đề centralization qua các cơ chế:
+
+### Merit-based Distribution:
+- Phân quyền dựa trên khả năng, không phải tài sản
+- Validator mới có cơ hội ngang bằng nếu có năng lực
+- Ngăn chặn sự thống trị của "whales"
+
+### Dynamic Validator Set:
+- Liên tục thay đổi dựa trên hiệu suất
+- Không có validator "vĩnh viễn"
+- Tạo áp lực cải thiện liên tục
+
+### Geographic Distribution:
+- Không phụ thuộc vào vị trí địa lý
+- Khuyến khích phân tán toàn cầu
+- Tăng tính resilience của mạng
+
+## Blockchain có phải là tương lai?
+
+PoT mở ra tiềm năng ứng dụng blockchain trong nhiều lĩnh vực:
+
+### Enterprise Applications:
+- **Supply Chain:** Tracking sản phẩm với validator chuyên nghiệp
+- **Healthcare:** Quản lý hồ sơ y tế với bảo mật cao
+- **Finance:** Xử lý giao dịch với độ tin cậy tối ưu
+
+### Real-time Applications:
+- **IoT Networks:** Xử lý dữ liệu sensor với độ trễ thấp
+- **Gaming:** Blockchain games với performance cao
+- **Metaverse:** Virtual worlds với consensus nhanh
+
+### Decentralized Infrastructure:
+- **DeFi Protocols:** DEX và lending với throughput cao
+- **DAOs:** Governance với validator đáng tin cậy
+- **NFT Marketplaces:** Minting và trading hiệu quả
+
+PoT không chỉ cải thiện hiệu suất kỹ thuật mà còn tạo ra một hệ sinh thái blockchain công bằng, bền vững và có khả năng mở rộng cho tương lai.
