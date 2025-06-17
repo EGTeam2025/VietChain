@@ -1,3 +1,67 @@
+### 🌐 VietChain – Mạng lưới Blockchain Tiên Tiến của Việt Nam
+🔗 Trang chủ: https://vietchain.net/
+
+VietChain là một nền tảng blockchain được phát triển với mục tiêu mang đến giải pháp công nghệ chuỗi khối tiên tiến,  
+tối ưu cho các ứng dụng thực tiễn tại Việt Nam và khu vực.  
+Dự án tập trung vào **tính bảo mật, hiệu suất cao và khả năng mở rộng**,  
+nhằm hỗ trợ các doanh nghiệp, tổ chức và cộng đồng nhà phát triển.
+
+---
+
+### 🔍 VietChain Explorer – Trình khám phá chuỗi khối  
+📊 Truy cập tại: https://vietscan.net/
+
+VietScan là trình khám phá blockchain chính thức của VietChain,  
+cho phép bạn theo dõi chi tiết các **giao dịch**, **block**, **địa chỉ ví**,  
+và **smart contract** đang hoạt động trên mạng.  
+Đây là công cụ thiết yếu cho **nhà phát triển**, **người dùng** và **nhà đầu tư**  
+muốn minh bạch hóa dữ liệu chuỗi.
+
+---
+
+### 📚 Tài liệu chính thức VietChain  
+📘 Tài liệu tham khảo: https://docs.vietchain.net/
+
+Trang tài liệu chính thức cung cấp đầy đủ hướng dẫn kỹ thuật cho lập trình viên, bao gồm:  
+- Thông tin về cơ sở hạ tầng, giao thức  
+- Cách tích hợp dApp  
+- Hướng dẫn tạo node  
+- Sử dụng API và RPC  
+
+Đây là nguồn tri thức không thể thiếu cho bất kỳ ai đang xây dựng trên nền VietChain.
+
+---
+
+### 🖥️ Hạ tầng RPC VietChain  
+🔗 RPC Endpoint: `rpc.vietchian.net`
+
+**RPC (Remote Procedure Call)** là giao diện chính thức để kết nối ứng dụng phi tập trung (dApp) hoặc ví với mạng VietChain.  
+Thông qua endpoint này, nhà phát triển có thể:  
+- Gửi truy vấn  
+- Ký và gửi giao dịch  
+- Tương tác với các smart contract
+
+---
+
+### 📺 Kênh YouTube chính thức – EG Team  
+▶️ Theo dõi tại: https://www.youtube.com/@EG-TEAM
+
+Kênh YouTube **EG Team** chia sẻ các nội dung như:  
+- Video hướng dẫn sử dụng nền tảng  
+- Livestream AMA với cộng đồng  
+- Phân tích xu hướng công nghệ  
+- Cập nhật sự kiện VietChain  
+
+Hữu ích cho cả người mới và nhà phát triển chuyên sâu.
+
+---
+
+### 📞 Thông tin liên hệ
+
+- ✉️ Email: [team@vietchain.net](mailto:team@vietchain.net)  
+- 📱 Điện thoại / Zalo: +84 936 324 033
+
+
 ## Go Ethereum
 
 Golang execution layer implementation of the Ethereum protocol.
