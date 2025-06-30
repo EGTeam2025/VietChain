@@ -59,7 +59,7 @@ Hữu ích cho cả người mới và nhà phát triển chuyên sâu.
 ### 📞 Thông tin liên hệ
 
 - ✉️ Email: [team@vietchain.net](mailto:team@vietchain.net)  
-- 📱 Điện thoại / Zalo: +84 936 324 033
+- 📱 Điện thoại +84 528 377 988
 
 
 ## Go Ethereum
